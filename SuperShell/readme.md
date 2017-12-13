@@ -9,7 +9,7 @@ An incredibly customizable and powerful Bash Bunny payload which absolutely anni
 It Can:
 - Delete the runline history
 - Gets reverse shell
-- Poisons common desktop shortcuts to launch more shells
+- Poisons common desktop shortcuts to launch more shells using an invisible vbs launcher that is copied to the host
 - Options of getting elevated privs for many things including above
 - Persistence options for all attacks
 - Option to steal files (ftp and/or usb)
