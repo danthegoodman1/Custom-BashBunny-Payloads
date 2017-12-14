@@ -25,7 +25,11 @@ None :)
 
 ### Configuration (optional)
 ---
-By default the payload is set to pull all .pdf and .docx files from the Desktop, Downloads, and Documents folders. You can add new items/locations by making new xcopy lines in the x.cmd file.
+With this payload, some configuration is required for SO MUCH POWER.
+
+Basic configuration is done in the `p.ps1` file, in which you will determine whether you want to use the various attacks of SuperShell.
+
+More complicated, and not as essential configuration is for the shortcut poisoning (which just happens to be the centerpiece of SuperShell). To do so, we need to populate `z.cmd` with some actual commands. I would recommend making that file some sort of .bat/.cmd payload generated for dropping an Empire or Metasploit shell. However one important thing to do is modify the payload file so that it does not delete itself! Also, you can just rename a .bat file to a .cmd file as they are almost the same thing. Elevation is something that should be done after a little lateral movement, because many times elevation is not even necessary, and it could potentially set off some red flags.
 
 
 ### Status:
@@ -35,7 +39,7 @@ Can I make files to check progress?
 |LED|Status|
 |---|---|
 |Yellow single blink|Running payload|
-|Solid Green|Files copied|
+|Solid Green|Payload executed, give it a few seconds to do its thang|
 
 ### How I did the shortcut poisoning
 ---
