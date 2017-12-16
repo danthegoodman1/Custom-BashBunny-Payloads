@@ -108,6 +108,7 @@ If ($hacked_shortcut_logo -eq 'yes') {
 
 
 
+# The part below is old code and will not be used, but is for reuse later.
 
 # Shortcut section (oh this is going to get complicated...)
 
