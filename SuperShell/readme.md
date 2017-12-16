@@ -13,6 +13,7 @@ It Can:
 - Options of getting elevated privs for many things including above
 - Persistence options for all attacks
 - Option to steal files (ftp and/or usb)
+- Change all icon logos to a "hacked" image to scare the crap out of people
 
 The really cool part is the desktop shortcut poisoning. Essentially, what it does is for each shortcut it finds, it creates a .cmd file that launches both the intended target of the shortcut, as well as the poison (payload). The CMD window doesn't even pop up on the screen, therefore it looks almost completely normal (there is a little CMD icon in the task bar for a split second). Using the elevated version, CMD mysteriously request for privileges. If it doesn't get it, it won't launch what ever the shortcut should normally launch, thus causing the user to keep trying and eventually figure out that it needs to give permissions to have it launch. Now you have a system level shell ;) (If you want to read more on how I accomplished this, check at the bottom of the readme)
 
@@ -30,6 +31,8 @@ With this payload, some configuration is required for SO MUCH POWER.
 Basic configuration is done in the `p.ps1` file, in which you will determine whether you want to use the various attacks of SuperShell.
 
 More complicated, and not as essential configuration is for the shortcut poisoning (which just happens to be the centerpiece of SuperShell). To do so, we need to populate `z.cmd` with some actual commands. I would recommend making that file some sort of .bat/.cmd payload generated for dropping an Empire or Metasploit shell. However one important thing to do is modify the payload file so that it does not delete itself! Also, you can just rename a .bat file to a .cmd file as they are almost the same thing. Elevation is something that should be done after a little lateral movement, because many times elevation is not even necessary, and it could potentially set off some red flags.
+
+If you want to really scare people into becoming more secure (if you are doing security testing at your company or something along those lines), enable the `$hacked_shortcut_logo` variable, which will take all existing shortcuts and give them the logo of `hl.ico` in the switch directory.
 
 
 ### Status:
