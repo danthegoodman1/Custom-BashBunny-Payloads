@@ -42,7 +42,7 @@ SuperShell comes with shortcuts for Google Chrome, Firefox (57/Quantum), MS Offi
 |MS Excel|`mse f o.cmd`|
 |MS
 
-If you want to really scare people into becoming more secure (if you are doing security testing at your company or something along those lines), enable the `$hacked_shortcut_logo` variable, which will take all existing shortcuts and give them the logo of `hl.ico` in the switch directory.
+If you want to really scare people into becoming more secure (if you are doing security testing at your company or something along those lines), enable the `$hacked_shortcut_logo` variable, which will take all existing shortcuts and give them the logo of `hl.ico` in the switch directory (after poisoning shortcuts).
 
 
 ### Status:
