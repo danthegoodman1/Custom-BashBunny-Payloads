@@ -6,7 +6,8 @@
 ### Description
 ---
 An incredibly customizable and powerful Bash Bunny payload which absolutely annihilates windows.
-Features:
+
+##### Features:
 - Deletes the runline history
 - Gets reverse shells
 - Poisons common desktop shortcuts to launch more shells using a fancy method, giving incredibly stealthy persistence
