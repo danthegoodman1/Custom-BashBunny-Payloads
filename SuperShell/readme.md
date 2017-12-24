@@ -7,6 +7,7 @@
 ---
 An incredibly customizable and powerful Bash Bunny payload which absolutely annihilates windows.
 
+
 ##### Features:
 - Deletes the runline history
 - Gets reverse shells
@@ -59,3 +60,7 @@ Can I make files to check progress?
 ### How I did the shortcut poisoning
 ---
 After LOTS of trial and error, I finally figured out a good system for poisoning shortcuts. Essentially what this part of the payload does is create a `temp\` folder in the user's directory, and stores some payload files on there. Then the real shortcut on the desktop is replaces with a lookalike. This shortcut launches one of the new files store in the `temp\` folder: `_ f o.cmd` (the blank being different for each shortcut). This has a space in it because windows `.lnk` files won't keep double quotes surrounding their target unless the file name has a space in it. The Double quotes are required for when the target's home directory has a space in it _(I'm over here thinking about everything, right!?)_. `_ f o.cmd` launches the expected program, as well as another payload file silently using a `i.vbs` (or you can have it just execute what ever CMD script you want!). You can also choose to drop an elevated version, which asks for system privileges before executing, thus giving the next commands system level privileges _(did somebody say infinite silent system level shells?)_. So interestingly enough most installations place their shortcuts in the `C:\Users\Public\Desktop` folder. This isn't a problem, because we can just delete them! The shortcut is then replaced on the user's desktop. This will most likely cause the icons to rearrange a little, which shouldn't be a tip-off to users because my icons on windows shift around all the time! An important thing to note is that this will delete the shortcuts for other user accounts on the computer, but you probably aren't pentesting a family who doesn't have their own devices. From there, you can really customize and choose what you want to happen. I have included a powershell script for downloading a reverse shell, as well as a local powershell script to spawn a shell.
+
+### Privilege Escalation & Tips:
+---
+See elevated version of SuperShell if you are looking to run as system. This will run everything with system level privileges to begin with (when running the first stage in powershell), resulting in everything after running as system. In the non-privilege escalation version, system privleges can still be achieved by setting the `f o.cmd` payload to launch the `z.cmd` reverse shell with elevated privileges, or set it directly in `z.cmd`.
