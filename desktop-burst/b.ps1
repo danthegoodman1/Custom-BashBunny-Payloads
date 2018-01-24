@@ -1,3 +1,4 @@
+// Change the below value to change how many desktops will be made
 $desktops=10
 
 $i=1

