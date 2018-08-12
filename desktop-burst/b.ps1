@@ -1,5 +1,8 @@
+// Change the below value to change how many desktops will be made
+$desktops=10
+
 $i=1
-While ($i -le 3)
+While ($i -le $desktops)
     {
     $KeyShortcut = Add-Type -MemberDefinition @"
         [DllImport("user32.dll")]
@@ -23,5 +26,6 @@ While ($i -le 3)
     $i++
     }
 
-echo 'failed?'
-$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")"
+// The following is for debugging
+// echo 'failed?'
+// $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")"

