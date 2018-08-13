@@ -14,6 +14,7 @@ const upload = multer({ storage })
 
 app.route('/')
 .post(upload.single('contact'), (req, res) => {
+    console.log("Got request")
     res.send("Thanks")
 })
 
