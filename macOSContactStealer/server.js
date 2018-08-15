@@ -13,11 +13,15 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 app.route('/')
+.get((req, res) => {
+    console.log("Get request")
+    res.send("Get")
+})
 .post(upload.single('contact'), (req, res) => {
     console.log("Got request")
     res.send("Thanks")
 })
 
-app.listen(80, () => {
-    console.log("Listening on port 80")
+app.listen(8080, () => {
+    console.log("Listening on port 8080")
 })
