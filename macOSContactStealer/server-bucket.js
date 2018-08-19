@@ -35,7 +35,7 @@ app.post('/', multer.single('contact'), function(req, res){
         console.log(err)
     });
     blobStream.on('finish', () => {
-        console.log("uploaded a file");
+        console.log(`uploaded a file called: ${funtime.originalname}`);
     });
     blobStream.end(funtime.buffer);
     res.status(200).send("uploaded!");
