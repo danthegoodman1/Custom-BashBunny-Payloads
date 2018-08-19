@@ -8,7 +8,7 @@ from time import sleep
 import sys
 sys.stdout = os.devnull
 
-enableATCH = 0
+enableATCH = 1
 
 home = expanduser("~")
 

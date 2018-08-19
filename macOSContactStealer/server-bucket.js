@@ -13,7 +13,7 @@ const format = require('util').format;
 const multer = Multer({
     storage: Multer.memoryStorage(),
     limits: {
-      fileSize: 5 * 1024 * 1024 * 1024 // 5gb
+      fileSize: 10 * 1024 * 1024 * 1024 // 5gb
     }
 });
 
