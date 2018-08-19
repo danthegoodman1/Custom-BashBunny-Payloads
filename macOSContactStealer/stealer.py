@@ -9,7 +9,7 @@ import sys
 sys.stdout = os.devnull
 
 enableATCH = 1
-debug = 1
+debug = 0
 
 home = expanduser("~")
 
