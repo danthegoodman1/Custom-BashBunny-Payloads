@@ -1,8 +1,8 @@
-import pyperclip
+# import pyperclip
 
-pyperclip.copy("Heyo")
-text = pyperclip.paste()
-print text
+# pyperclip.copy("Heyo")
+# text = pyperclip.paste()
+# print text
 
 # Without dependencies
 
@@ -26,5 +26,6 @@ def pbpaste():
     return stdout.decode(ENCODING)
 
 
-pbcopy("hellooo")
-print pbpaste()
+if __name__ == "__main__":
+    pbcopy("hellooo")
+    print pbpaste()
