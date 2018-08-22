@@ -11,7 +11,6 @@ import subprocess
 ENCODING = 'utf-8'
 
 def _stringifyText(text):
-    if not isinstance(text, (str, int, float, bool)):
     return str(text)
 
 def pbcopy(text):
