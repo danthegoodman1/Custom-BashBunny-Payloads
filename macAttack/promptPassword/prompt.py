@@ -1,4 +1,5 @@
 import subprocess
+import checkiCloudEmail
 
 def promptSystem():
     try:
@@ -11,7 +12,7 @@ def promptSystem():
 def promptiCloud():
     try:
         run_command = subprocess.check_output(
-        "osascript icloud.applescript", shell=True)
+        "osascript icloud.applescript {0}".format(checkiCloudEmail.checkEmail()), shell=True)
     except subprocess.CalledProcessError:
         pass
     return run_command

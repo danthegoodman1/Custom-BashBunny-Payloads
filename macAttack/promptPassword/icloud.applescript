@@ -1,6 +1,8 @@
+on run argv
+
 tell application "Finder"
     activate
-    set myprompt to "Type your iCloud password to allow iMessage to sync with your iPhone"
+    set myprompt to "Type your iCloud password for " & item 1 of argv & " to allow iMessage to sync with your iPhone "
                 
     set ans to "Cancel"
     repeat
@@ -16,3 +18,5 @@ tell application "Finder"
         do shell script "echo " & quoted form of mypass
     end try
 end tell
+
+end run
