@@ -7,3 +7,6 @@ The ultimate macOS attack suite
 - macOS file uploader
 
 `#!/usr/bin/env python`
+
+
+`"/System/Library/PreferencePanes/iCloudPref.prefPane/Contents/Resources/iCloudIcon.icns"`
