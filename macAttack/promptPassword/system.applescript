@@ -1,8 +1,6 @@
-on run argv
-
 tell application "Finder"
     activate
-    set myprompt to "Type your password to allow " & (item 1 of argv) & " System Preferences to make changes"
+    set myprompt to "Type your password to allow System Preferences to make changes"
                 
     set ans to "Cancel"
     repeat
