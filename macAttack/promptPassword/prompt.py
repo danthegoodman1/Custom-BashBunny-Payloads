@@ -30,7 +30,7 @@ def tryRoot(pw):
         return "FALSE"
 
 if __name__ == "__main__":
-    # icloudpass = promptiCloud()
+    icloudpass = promptiCloud()
     # print icloudpass
     localpass = promptSystem()
     # print "ITSSSS" + tryRoot(localpass)
