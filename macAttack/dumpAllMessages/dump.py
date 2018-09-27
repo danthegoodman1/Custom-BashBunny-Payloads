@@ -10,6 +10,6 @@ import sys
 import sqlite3
 sys.stdout = os.devnull
 
-clocation = home + "/Library/Messages
+clocation = home + "/Library/Messages"
 
 # https://stmorse.github.io/journal/iMessage.html
