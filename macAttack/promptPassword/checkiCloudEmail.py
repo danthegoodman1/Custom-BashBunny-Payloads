@@ -32,3 +32,5 @@ def checkEmail():
         return run_command
     except subprocess.CalledProcessError:
         pass
+
+print checkEmail()
